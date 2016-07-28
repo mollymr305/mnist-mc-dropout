@@ -29,8 +29,8 @@ def main(idx, net, data, target, test_function, T=100):
     plt.imshow(data[idx].reshape(28,28))
     plt.title('{}\n'.format(y_test[idx]), size=22)
     plt.axis('off')
-    plt.savefig('./output/index_{}_image.eps'.format(idx),format='eps')
-    plt.savefig('./output/index_{}_image.jpg'.format(idx),format='jpg')
+    plt.savefig('./output/index_{}.eps'.format(idx),format='eps')
+    plt.savefig('./output/index_{}.jpg'.format(idx),format='jpg')
     plt.close()
 
 if __name__ == '__main__':
