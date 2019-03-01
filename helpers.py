@@ -1,10 +1,11 @@
-import os
-import gzip
-from urllib import urlretrieve
+"""Helper functions."""
 import cPickle as pickle
+import gzip
 import numpy as np
+import os
 
-""" helper functions """
+from urllib import urlretrieve
+
 
 def report(text, output_file):
     f = open(output_file, 'a')
@@ -18,16 +19,20 @@ def load_mnist_data():
         print 'Downloading MNIST data ...'
         url = 'http://deeplearning.net/data/mnist/mnist.pkl.gz'
         urlretrieve(url, mnist_filename)
+
     train, val, test = pickle.load(gzip.open(mnist_filename, 'rb'))
-    # training dataset
+
+    # Training dataset
     X_train, Y_train = train
     X_train = X_train.reshape((-1, 1, 28, 28)).astype('float32')
     Y_train = Y_train.astype('int32')
-    # validation dataset
+
+    # Validation dataset
     X_val, Y_val = val
     X_val = X_val.reshape((-1, 1, 28, 28)).astype('float32')
     Y_val = Y_val.astype('int32')
-    # test dataset
+
+    # Test dataset
     X_test, Y_test = test
     X_test = X_test.reshape((-1, 1, 28, 28)).astype('float32')
     Y_test = Y_test.astype('int32')
@@ -37,7 +42,7 @@ def load_mnist_data():
 def generate_batches(data, target, batch_size=500, stochastic=True):
     idx = np.arange(len(data))
     np.random.shuffle(idx) if stochastic else idx
+
     for k in xrange(0, len(data), batch_size):
         sample = idx[slice(k, k + batch_size)]
         yield data[sample], target[sample]
-

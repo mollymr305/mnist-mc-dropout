@@ -9,7 +9,7 @@ Writing Python (Lasagne + Theano library) code for respresenting model uncertain
 
 Training takes about less than 3 hours (for 3000 epochs) minutes with GPU; thanks [National Supercomputing Centre (NSCC) Singapore](http://www.nscc.sg)!
 
-The main implementation is in ```mnist_mc_dropout.py``` which uses helper functions from ```__helpers__.py```, and of course the dataset ```mnist.pkl.gz```. For plotting training/validation errors see ```plot_error.py```. All the outputs are saved/pickled in the ```output``` folder.
+The main implementation is in ```mnist_mc_dropout.py``` which uses helper functions from ```helpers.py```, and of course the dataset ```mnist.pkl.gz```. For plotting training/validation errors see ```plot_error.py```. All the outputs are saved/pickled in the ```output``` folder.
 
 Run/theano settings: ```THEANO_FLAGS='mode=FAST_RUN, device=gpu, floatX=float32' python mnist_mc_dropout.py```
 

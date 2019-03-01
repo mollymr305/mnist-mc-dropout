@@ -1,22 +1,26 @@
-import gzip
+"""Plot training/validation error."""
 import cPickle as pickle
-import seaborn as sns
+import gzip
 import matplotlib.pyplot as plt
-plt.switch_backend('Agg')
+import seaborn as sns
 
 
-# unpickle training info
+# Unpickle training info
 filename = './output/mnist_mc_dropout_info.pkl.gz'
 f = gzip.open(filename, 'rb')
 data = pickle.load(f)
 f.close()
-# get accuracy
+
+# Get accuracy
 TA = data['training accuracy']
 VA = data['validation accuracy']
-# compute error as %
+
+# Compute error as %
 TE = [(1. - ta) * 100 for ta in TA]
 VE = [(1. - va) * 100 for va in VA]
-# plot training and validation errors
+
+# Plot training and validation errors
+plt.switch_backend('Agg')
 plt.plot(VE, c='r', lw=1.5)
 plt.plot(TE, c='g', lw=1.5)
 plt.legend(['validation', 'training'], fontsize=20)
